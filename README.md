@@ -27,6 +27,14 @@ vendor/bin/pest --ws='ws://playwright.example.com:3000'
 
 The endpoint can also be supplied as a separate argument with `--ws ws://playwright.example.com:3000`.
 
+Use `--host` to set the application hostname seen by the browser, equivalent to `withHost(...)`:
+
+```sh
+vendor/bin/pest --ws='ws://127.0.0.1:3000' --host=host.docker.internal
+```
+
+The hostname can also be supplied as `--host host.docker.internal`. This option changes application URLs, not the HTTP server's bind address or the Playwright endpoint. A browser in Docker still needs a reachable HTTP listener, such as a custom HTTP server bound to `0.0.0.0`, and a host-gateway mapping for `host.docker.internal` on Linux.
+
 Secure `wss://` endpoints, paths, and query parameters are supported. The plugin does not require a local Playwright installation when using a remote server, and does not start or stop the remote process. This configuration also works with parallel tests.
 
 Run a compatible Playwright server (currently version 1.63.0 or newer), for example:
