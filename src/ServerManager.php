@@ -69,7 +69,7 @@ final class ServerManager
             return AlreadyStartedPlaywrightServer::fromPersisted();
         }
 
-        $port = 3000; //Port::find();
+        $port = Port::find();
         $host = Playwright::host() ?? self::DEFAULT_HOST;
 
         $this->playwright ??= PlaywrightNpmServer::create(
